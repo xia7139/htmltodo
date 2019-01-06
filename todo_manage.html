@@ -177,10 +177,10 @@
             todoItems = todoItems.sort(todoSortFunc);
             doneItems = doneItems.sort(doneSortFunc);
             for(var i=0; i < todoItems.length; i++){
-                document.getElementById("todo_table").appendChild(allItems[i].toTodoTrObj());
+                document.getElementById("todo_table").appendChild(todoItems[i].toTodoTrObj());
             };
             for(var i=0; i < doneItems.length; i++){
-                document.getElementById("done_table").appendChild(allItems[i].toDoneTrObj());
+                document.getElementById("done_table").appendChild(doneItems[i].toDoneTrObj());
             }
             if(ifAlert == 1){
                 alert("read Successfully!");
