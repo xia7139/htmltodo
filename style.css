@@ -1,0 +1,64 @@
+#todo_area{
+    border: 5px solid black;
+    display: inline-block;
+    background-color: greenyellow;
+    height: 300px;
+    width: 550px;
+    overflow-y: auto;
+}
+#done_area{
+    border: 5px solid black;
+    display: inline-block;
+    background-color: goldenrod;
+    height: 300px;
+    width: 670px;
+    overflow-y: auto;
+}
+td{
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+/* 将两个上下箭头并排放置在该span中 */
+.sortBtnSpan{
+    width: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 2px;/* 设置排序箭头和文字之间的距离 */
+}
+/*
+将Span元素设置为宽高都为0，然后通过设置左右上边距，实现一个向下的箭头。通过设置一个左右下边距实现一个向上的箭头。
+*/
+.arrow {
+    display: block;
+    width: 0;
+    height: 0;
+    margin-bottom: 1px;
+    opacity: 0.36;
+    cursor:pointer;
+}
+
+/* 点击排序之后，增加按钮的透明度，表示选中 */
+.arrow.sorted {
+    opacity: 0.9;
+}
+
+.arrow.asc {
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #fff;
+}
+
+.arrow.dsc {
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #fff;
+}
+
+.Monday {background-color: #ff8080;}
+.Tuesday {background-color: #80ff80;}
+.Wednesday {background-color: #80a0ff;}
+.Thursday {background-color: #ffff80;}
+.Friday {background-color: #80ffff;}
+.Saturday {background-color: #ffa0ff;}
+.Sunday {background-color: #a000ff;}
+.Past {background-color: #808080;}
