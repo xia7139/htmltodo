@@ -120,7 +120,9 @@
                 var now_time = new Date();
                 item_obj.end_time = now_time.format("YYYYMMdd hh:mm_ss");
                 item_obj.doneFlag =true;
-                document.getElementById('done_table').appendChild(item_obj.toDoneTrObj());
+                //document.getElementById('done_table').appendChild(item_obj.toDoneTrObj());
+                //取得done_table的第一个直接tr孩子节点，在其前面插入一个html定义的新节点
+                $("#done_table>tr:first").before(item_obj.toDoneTrObj());
             }else{
                 //从done中删除
                 var item_tr_obj = item_checkbox_obj.parentNode.parentNode;
