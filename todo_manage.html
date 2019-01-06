@@ -10,7 +10,7 @@
             height: 300px;
             width: 600px;
             overflow-y: auto;
-        }        
+        }
         #done_area{
             border: 5px solid black;
             display: inline-block;
@@ -27,81 +27,81 @@
         .sortBtnSpan{
             width: 10px;
             display: inline-block;
-            vertical-align: middle;  
+            vertical-align: middle;
             margin-left: 2px;/* 设置排序箭头和文字之间的距离 */
         }
         /* 
         将Span元素设置为宽高都为0，然后通过设置左右上边距，实现一个向下的箭头。通过设置一个左右下边距实现一个向上的箭头。
         */
-        .arrow {  
-          display: block;  
-          width: 0;  
-          height: 0;
-          margin-bottom: 1px; 
-          opacity: 0.36;
-          cursor:pointer;
+        .arrow {
+            display: block;
+            width: 0;
+            height: 0;
+            margin-bottom: 1px;
+            opacity: 0.36;
+            cursor:pointer;
         }
-        
+
         /* 点击排序之后，增加按钮的透明度，表示选中 */
         .arrow.sorted {
-          opacity: 0.9; 
+            opacity: 0.9;
         }
-          
-        .arrow.asc {  
-          border-left: 6px solid transparent;  
-          border-right: 6px solid transparent;  
-          border-bottom: 6px solid #fff; 
+
+        .arrow.asc {
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 6px solid #fff;
         }
-  
-        .arrow.dsc {  
-          border-left: 6px solid transparent;  
-          border-right: 6px solid transparent;  
-          border-top: 6px solid #fff; 
+
+        .arrow.dsc {
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid #fff;
         }
-        
-        .Monday {background-color: chartreuse;}
-        .Tuesday {background-color: green;}
-        .Wednesday {background-color: aquamarine;}
-        .Thursday {background-color: amber;}
-        .Friday {background-color: orange;}
-        .Saturday {background-color: purple;}
-        .Sunday {background-color: indigo;}
-        .Past {}
+
+        .Monday {background-color: #ff8080;}
+        .Tuesday {background-color: #80ff80;}
+        .Wednesday {background-color: #80a0ff;}
+        .Thursday {background-color: #ffff80;}
+        .Friday {background-color: #80ffff;}
+        .Saturday {background-color: #ffa0ff;}
+        .Sunday {background-color: #a000ff;}
+        .Past {#808080;}
     </style>
 
     <!-- Include the jquery. -->
     <script src="jquery-3.3.1.js"></script>
-    
+
     <script>
 
         //*******************************JavaScript扩展*******************************************
         Date.prototype.format = function(format) {
             var date = {
-               "M+": this.getMonth() + 1,
-               "d+": this.getDate(),
-               "h+": this.getHours(),
-               "m+": this.getMinutes(),
-               "s+": this.getSeconds(),
-               "q+": Math.floor((this.getMonth() + 3) / 3),
-               "S+": this.getMilliseconds()
+                "M+": this.getMonth() + 1,
+                "d+": this.getDate(),
+                "h+": this.getHours(),
+                "m+": this.getMinutes(),
+                "s+": this.getSeconds(),
+                "q+": Math.floor((this.getMonth() + 3) / 3),
+                "S+": this.getMilliseconds()
             };
             if (/(y+)/i.test(format)) {
-               format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+                format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
             }
             for (var k in date) {
-               if (new RegExp("(" + k + ")").test(format)) {
-                   format = format.replace(RegExp.$1, RegExp.$1.length == 1
-                      ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
-               }
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                        ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+                }
             }
             return format;
         }
-        
+
         /*
-          filter()兼容旧环境
-          filter 被添加到 ECMA-262 标准第 5 版中，因此在某些实现环境中不被支持。可以把下面的代码插入到脚本的开头来解决此问题，
-          该代码允许在那些没有原生支持 filter 的实现环境中使用它。该算法是 ECMA-262 第 5 版中指定的算法
-        */
+         filter()兼容旧环境
+         filter 被添加到 ECMA-262 标准第 5 版中，因此在某些实现环境中不被支持。可以把下面的代码插入到脚本的开头来解决此问题，
+         该代码允许在那些没有原生支持 filter 的实现环境中使用它。该算法是 ECMA-262 第 5 版中指定的算法
+         */
 
         Array.prototype.filter = Array.prototype.filter || function(func) {
                 var arr = this;
@@ -112,8 +112,8 @@
                     }
                 }
                 return r;
-        }
-        
+            }
+
         //*******************************JavaScript扩展*******************************************
 
 
@@ -136,7 +136,7 @@
             toTodoTrObj:
                 function(){
                     var tr_element = document.createElement('tr');
-                    
+
                     var td_element = document.createElement('td');//td for checkbox
                     var temp_element = document.createElement('input');//checkbox
                     temp_element.setAttribute('type','checkbox');
@@ -144,7 +144,7 @@
                     temp_element.setAttribute('onclick',"check(this);");
                     td_element.appendChild(temp_element);
                     tr_element.appendChild(td_element);
-                                        
+
                     td_element = document.createElement('td');//td for item name
                     temp_element = document.createElement('input');//td for item name
                     temp_element.setAttribute('type','text');
@@ -154,11 +154,11 @@
                     temp_element.setAttribute('onblur',"updateItemName(this);");
                     td_element.appendChild(temp_element);
                     tr_element.appendChild(td_element);
-                    
+
                     td_element = document.createElement('td');//td for start time
                     td_element.appendChild(document.createTextNode(this.start_time));
                     tr_element.appendChild(td_element);
-                    
+
                     td_element = document.createElement('td');
                     temp_element = document.createElement('button');//del button
                     temp_element.setAttribute('itemid',this.id);
@@ -166,13 +166,13 @@
                     temp_element.appendChild(document.createTextNode('Del'));
                     td_element.appendChild(temp_element);
                     tr_element.appendChild(td_element);
-                    
+
                     return tr_element;
                 },
             toDoneTrObj:
                 function(){
                     var tr_element = document.createElement('tr');
-                    
+
                     var td_element = document.createElement('td');//td for checkbox
                     var temp_element = document.createElement('input');//checkbox
                     temp_element.setAttribute('type','checkbox');
@@ -181,7 +181,7 @@
                     temp_element.setAttribute('onclick',"check(this);");
                     td_element.appendChild(temp_element);
                     tr_element.appendChild(td_element);
-                    
+
                     td_element = document.createElement('td');//td for item name
                     temp_element = document.createElement('input');
                     temp_element.setAttribute('type','text');
@@ -191,16 +191,16 @@
                     temp_element.setAttribute('onblur',"updateItemName(this);");
                     td_element.appendChild(temp_element);
                     tr_element.appendChild(td_element);
-                    
+
                     td_element = document.createElement('td');//td for start time
                     td_element.appendChild(document.createTextNode(this.start_time));
                     tr_element.appendChild(td_element);
                     td_element = document.createElement('td');
                     td_element.appendChild(document.createTextNode(this.end_time));
                     tr_element.appendChild(td_element);
-                    
+
                     tr_element.setAttribute("class", getDoneClassName(this.end_time));
-                    
+
                     return tr_element;
                 }
         }
@@ -221,7 +221,7 @@
                 //从todo中删除
                 var item_tr_obj = item_checkbox_obj.parentNode.parentNode;
                 document.getElementById('todo_table').removeChild(item_tr_obj);
-                
+
                 //加入到done
                 var now_time = new Date();
                 item_obj.end_time = now_time.format("YYYYMMdd hh:mm_ss");
@@ -231,20 +231,20 @@
                 //从done中删除
                 var item_tr_obj = item_checkbox_obj.parentNode.parentNode;
                 document.getElementById('done_table').removeChild(item_tr_obj);
-                
+
                 //加入到todo
                 var now_time = new Date();
-                item_obj.end_time = now_time.format("YYYYMMdd hh:mm_ss");
-                item_obj.doneFlag = false;                
+                item_obj.end_time = '';
+                item_obj.doneFlag = false;
                 document.getElementById('todo_table').appendChild(item_obj.toTodoTrObj());
             }
             return ;
         }
-        
+
         function remove_item(remove_button_obj){
             var item_id = remove_button_obj.getAttribute('itemid');
             for(var i = 0; i < allItems.length; i++){
-                if(allItems[i].id = item_id){
+                if(allItems[i].id == item_id){
                     break;
                 }
             }
@@ -268,21 +268,21 @@
         }
 
         function readStorageItems(ifAlert){
-            
+
             //清空原有事项
             $('#todo_table').children().first().siblings().remove();
             $('#done_table').children().first().siblings().remove();
-            
+
             allItems = strToAllItems(localStorage.allItemsStr);
             for(var i=0; i < allItems.length; i++){
                 if(allItems[i].doneFlag == true){
                     document.getElementById("done_table").appendChild(allItems[i].toDoneTrObj());
                 }else{
-                    document.getElementById("todo_table").appendChild(allItems[i].toTodoTrObj());                    
+                    document.getElementById("todo_table").appendChild(allItems[i].toTodoTrObj());
                 }
             }
             if(ifAlert == 1){
-                alert("read Successfully!");                
+                alert("read Successfully!");
             }
         }
         //==================================JavaScript事件响应函数========================================
@@ -297,7 +297,7 @@
                 }
             }
         }
-        
+
         function strToItemObj(itemStorageStr){
             var firstSplitPos = itemStorageStr.indexOf('===');
             var secondSplitPos = itemStorageStr.lastIndexOf('===');
@@ -309,7 +309,7 @@
             }
             return itemObj;
         }
-        
+
         function allItemsToStr(allItemsArr){
             var allItemsStr = allItemsArr[0].toStorageStr();
             for(var i = 1; i < allItemsArr.length; i++){
@@ -326,17 +326,17 @@
             }
             return allItems;
         }
-        
+
         //用来筛选出todo
         function isTodoItem(itemObj){
             return !itemObj.doneFlag;
         }
-        
+
         //用来筛选出done
         function isDoneItem(itemObj){
             return itemObj.doneFlag;
         }
-        
+
         /* 产生一个排序函数，如果前一个参数应该排在前面，就应该返回一个小于0的数。 */
         function generateSortFunc(sortAttr, sortDir){
             if(sortDir == 'asc'){
@@ -389,10 +389,10 @@
                 }
             }
         }
-        
+
         /* 输入一个字符串格式：YYYYMMdd hh:mm_ss */
         function getDoneClassName(dateStr){
-            
+
             var weekday=new Array(8);
             weekday[0]="Sunday";
             weekday[1]="Monday";
@@ -402,107 +402,107 @@
             weekday[5]="Friday";
             weekday[6]="Saturday";
             weekday[7]="Past";
-            
+
             var year = dateStr.substr(0,4);
             var month = dateStr.substr(4,2);
             var day = dateStr.substr(6,2);
             var theDate = new Date(Date.parse(year+"/"+month+"/"+day));
             var nowDate = new Date();
-            
+
             /* 这段逻辑还有待优化 */
             if((nowDate.getTime() - theDate.getTime())/(3600*1000*24) < (nowDate.getDay() == 0 ? 7 : nowDate.getDay() - 1)){
                 return weekday[theDate.getDay()];
             }else{
                 return weekday[7];
-            }            
+            }
         }
         //##################################基础数据结构和功能封装########################################
-         
+
     </script>
 </head>
 <body>
-    <p>Here is a todo manage tool.</p>
-    <button onclick="add_an_item(this);">Add an item</button><input type="text" id="item_input" name="item_text" value="1"><br/>
-    <button onclick="saveToStorage();">Save to localStorage</button><input type="text" id="item_input" name="item_text" value="1"><br/>
-    <button onclick="readStorageItems(1);">Read localStorage</button><input type="text" id="item_input" name="item_text" value="1"><br/>
-    <div id="todo_area">
-        <table id="todo_table">
-            <tr>
-                <th>doit</th>
-                <th>事项</th>
-                <th>
-                    添加时间
-                    <span class="sortBtnSpan">
+<p>Here is a todo manage tool.</p>
+<button onclick="add_an_item(this);">Add an item</button><input type="text" id="item_input" name="item_text" value="1"><br/>
+<button onclick="saveToStorage();">Save to localStorage</button><input type="text" id="item_input" name="item_text" value="1"><br/>
+<button onclick="readStorageItems(1);">Read localStorage</button><input type="text" id="item_input" name="item_text" value="1"><br/>
+<div id="todo_area">
+    <table id="todo_table">
+        <tr>
+            <th>doit</th>
+            <th>事项</th>
+            <th>
+                添加时间
+                <span class="sortBtnSpan">
                         <span class="arrow sorted asc" sortAttr="start_time" sortDir='asc' sortCat='todo'></span>
                         <span class="arrow dsc" sortAttr="start_time" sortDir='dsc' sortCat='todo'></span>
                     </span></th>
-                <th>操作</th>
-            </tr>
-        </table>
-    </div>
-    <div id="done_area">
-        <table id="done_table">
-            <tr>
-                <th>done</th>
-                <th>事项</th>
-                <th>
-                    添加时间
-                    <span class="sortBtnSpan">
+            <th>操作</th>
+        </tr>
+    </table>
+</div>
+<div id="done_area">
+    <table id="done_table">
+        <tr>
+            <th>done</th>
+            <th>事项</th>
+            <th>
+                添加时间
+                <span class="sortBtnSpan">
                         <span class="arrow asc" sortAttr="start_time" sortDir='asc' sortCat='done'></span>
                         <span class="arrow dsc" sortAttr="start_time" sortDir='dsc' sortCat='done'></span>
                     </span>
-                </th>
-                <th>
-                    完成时间
-                    <span class="sortBtnSpan">
+            </th>
+            <th>
+                完成时间
+                <span class="sortBtnSpan">
                         <span class="arrow asc" sortAttr="end_time" sortDir='asc' sortCat='done'></span>
                         <span class="arrow dsc" sortAttr="end_time" sortDir='dsc' sortCat='done'></span>
                     </span>
-                </th>
-            </tr>
-        </table>
-    </div>
+            </th>
+        </tr>
+    </table>
+</div>
 </body>
-    <script>
-        ////////////////////////////////////////JQuery绑定事件//////////////////////////////////////////////////
-        $(".arrow").bind("click", function(){
-            $(this).addClass("sorted").siblings().removeClass("sorted");
-            var sortAttr = $(this).attr("sortAttr");
-            var sortDir = $(this).attr("sortDir");
-            var sortCat = $(this).attr("sortCat");
-            var sortFunc = generateSortFunc(sortAttr,sortDir);
-            var sortItems;
-            if(sortCat == 'todo'){
-                
-                //筛选事项并排序
-                sortItems = allItems.filter(isTodoItem);
-                sortItems = sortItems.sort(sortFunc);
-                
-                //清空原有事项
-                $('#todo_table').children().first().siblings().remove();
-                
-                //重新按顺序添加所有事项
-                for(var i=0; i < sortItems.length; i++){
-                    document.getElementById("todo_table").appendChild(sortItems[i].toTodoTrObj());
-                }
-            }else if(sortCat == 'done'){
-                
-                //筛选事项并排序
-                sortItems = allItems.filter(isDoneItem);
-                sortItems = sortItems.sort(sortFunc);
-                
-                //清空原有事项
-                $('#done_table').children().first().siblings().remove();
-                
-                //重新按顺序添加所有事项
-                for(var i=0; i < sortItems.length; i++){
-                    document.getElementById("done_table").appendChild(sortItems[i].toDoneTrObj());
-                }
+<script>
+    ////////////////////////////////////////JQuery绑定事件//////////////////////////////////////////////////
+    $(".arrow").bind("click", function(){
+        $(this).addClass("sorted").siblings().removeClass("sorted");
+        var sortAttr = $(this).attr("sortAttr");
+        var sortDir = $(this).attr("sortDir");
+        var sortCat = $(this).attr("sortCat");
+        var sortFunc = generateSortFunc(sortAttr,sortDir);
+        var sortItems;
+        if(sortCat == 'todo'){
+
+            //筛选事项并排序
+            sortItems = allItems.filter(isTodoItem);
+            sortItems = sortItems.sort(sortFunc);
+
+            //清空原有事项
+            $('#todo_table').children().first().siblings().remove();
+
+            //重新按顺序添加所有事项
+            for(var i=0; i < sortItems.length; i++){
+                document.getElementById("todo_table").appendChild(sortItems[i].toTodoTrObj());
             }
-        });
-        
-        //打开页面自动加载存储在localStorage中的事项
-        $(document).ready(readStorageItems(0));
-        ////////////////////////////////////////JQuery绑定事件//////////////////////////////////////////////////
-    </script>
+        }else if(sortCat == 'done'){
+
+            //筛选事项并排序
+            sortItems = allItems.filter(isDoneItem);
+            sortItems = sortItems.sort(sortFunc);
+
+            //清空原有事项
+            $('#done_table').children().first().siblings().remove();
+
+            //重新按顺序添加所有事项
+            for(var i=0; i < sortItems.length; i++){
+                document.getElementById("done_table").appendChild(sortItems[i].toDoneTrObj());
+            }
+        }
+    });
+
+    //打开页面自动加载存储在localStorage中的事项
+    $(document).ready(readStorageItems(0));
+    ////////////////////////////////////////JQuery绑定事件//////////////////////////////////////////////////
+</script>
 </html>
