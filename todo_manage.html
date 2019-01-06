@@ -105,6 +105,8 @@
             var item_obj = new Item(document.getElementById('item_input').value, now_time.format("YYYYMMdd hh:mm_ss"), '');
             document.getElementById('todo_table').appendChild(item_obj.toTodoTrObj());
             allItems.push(item_obj);
+            //item新增之后，立马更新localstorage，防止丢失
+            localStorage.allItemsStr = allItemsToStr(allItems);
             return ;
         }
 
@@ -134,6 +136,8 @@
                 item_obj.doneFlag = false;
                 document.getElementById('todo_table').appendChild(item_obj.toTodoTrObj());
             }
+            //item状态有变动之后，立马写入localstorage，防止丢失更新
+            localStorage.allItemsStr = allItemsToStr(allItems);
             return ;
         }
 
@@ -148,6 +152,8 @@
             //从done中删除
             var item_tr_obj = remove_button_obj.parentNode.parentNode;
             document.getElementById("todo_table").removeChild(item_tr_obj);
+            //删除item之后，立马更新localStorage，防止丢失
+            localStorage.allItemsStr = allItemsToStr(allItems);
             return ;
         }
 
