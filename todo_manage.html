@@ -319,7 +319,7 @@
             var nowDate = new Date();
 
             /* 这段逻辑还有待优化 */
-            if((nowDate.getTime() - theDate.getTime())/(3600*1000*24) < (nowDate.getDay() == 0 ? 7 : nowDate.getDay() - 1)){
+            if((nowDate.getTime() - theDate.getTime())/(3600*1000*24) < (nowDate.getDay() == 0 ? 7 : nowDate.getDay())){
                 return weekday[theDate.getDay()];
             }else{
                 return weekday[7];
@@ -377,7 +377,7 @@
             <th>day</th><th>color</th>
         </tr>
         <tr>
-            <td>Monday</td><td class="Monday">charteuse</td>
+            <td>Monday</td><td class="Monday">chartreuse</td>
         </tr>
         <tr>
             <td>Tuesday</td><td class="Tuesday">green</td>
