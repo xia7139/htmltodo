@@ -54,6 +54,17 @@ td{
     border-top: 6px solid #fff;
 }
 
+.nono {
+}
+
+.ing {
+    background: #FF0000;
+}
+
+.next {
+    background: #00FF00;
+}
+
 .Monday {background-color: #ff8080;}
 .Tuesday {background-color: #80ff80;}
 .Wednesday {background-color: #80a0ff;}

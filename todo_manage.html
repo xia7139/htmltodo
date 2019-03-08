@@ -19,6 +19,7 @@
             this.start_time = start_time;
             this.end_time = end_time;
             this.doneFlag = false;
+            this.planStatus = -1;
         }
 
         //方法
@@ -59,6 +60,11 @@
                     temp_element.setAttribute('onclick',"remove_item(this);");
                     temp_element.appendChild(document.createTextNode('Del'));
                     td_element.appendChild(temp_element);
+                    tr_element.appendChild(td_element);
+
+                    td_element = document.createElement('td');
+                    td_element.setAttribute('itemid',this.id);
+                    td_element.setAttribute('class',"plan");
                     tr_element.appendChild(td_element);
 
                     return tr_element;
@@ -346,6 +352,7 @@
                         <span class="arrow dsc" sortAttr="start_time" sortDir='dsc' sortCat='todo'></span>
                     </span></th>
             <th>操作</th>
+            <th>plan</th>
         </tr>
     </table>
 </div>
@@ -440,6 +447,40 @@
 
     //打开页面自动加载存储在localStorage中的事项
     $(document).ready(readStorageItems(0));
+
+    $(".plan").bind("mousedown", function(e){
+        var item_id = $(this).attr("itemid");
+        var status = 0;
+        for(var i = 0; i < allItems.length; i++){
+            if(allItems[i].id == item_id){
+                status = allItems[i].planStatus;
+                if(3 == e.which){//鼠标右键，下一步做next
+                    allItems[i].planStatus = ((++status) >= 1 ? 1 : status);
+                }else if(1 == e.which){//鼠标左键，现在做ing
+                    allItems[i].planStatus = ((--status) <= -1 ? -1 : status);
+                }else{
+
+                }
+            }
+        }
+        colorObj($(this), status);
+    });
+    //阻止浏览器默认事件
+    $(".plan").bind("contextmenu", function () {
+        return false;
+    });
+
+    function colorObj(obj, status) {
+        if(-1 == status){
+            obj.removeClass("ing").removeClass("next").addClass("nono")
+        }else if(0 == status){
+            obj.removeClass("next").removeClass("nono").addClass("ing")
+        }else if(1 == status){
+            obj.removeClass("nono").removeClass("ing").addClass("next")
+        }else{
+
+        }
+    }
     ////////////////////////////////////////JQuery绑定事件//////////////////////////////////////////////////
 </script>
 </html>
